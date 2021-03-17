@@ -1,9 +1,19 @@
 name: actions workflow
 
 on: 
+ repository_dispatch:
+   types: ["my custom event types"]
+# push:
  push:
+   branches:
+    - master
+    - development
+    - feature1
  pull_request:
    types: [closed, assigned, opened, reopened]
+# schedule:
+#   - cron: "0/15 * * * *"
+#   - cron: "0/5 * * * *"
 
 jobs:
   run-github-actions:
