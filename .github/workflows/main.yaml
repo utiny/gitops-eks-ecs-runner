@@ -21,7 +21,7 @@ jobs:
        - name: step4 echo another string
          run: echo completed.
   run-windows-commands:
-    run-on: windows-latest
+    runs-on: windows-latest
     steps:
       - name: Directory-listing-powershell
         run: Get-Location
