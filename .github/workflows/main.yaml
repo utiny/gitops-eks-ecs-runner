@@ -13,7 +13,12 @@ jobs:
          run: |
            node -v
            npm -v
-       - name: step3 echo another string
+       - name: step3 python commands
+         run: |
+           import platform
+           print(platform.processor)  
+         shell: python
+       - name: step4 echo another string
          run: echo completed.
 
  
