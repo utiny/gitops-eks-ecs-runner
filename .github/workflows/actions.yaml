@@ -13,6 +13,13 @@ jobs:
           who-to-greet: Niladri
       - name: log output
         run: echo "${{steps.greet.outputs.time}}"
+      - name: Checkout
+        uses: action/checkout@v1
+      - name: List Directory
+        needs: ["Checkout"]
+        run: |
+          pwd
+          ls
 
 
 
