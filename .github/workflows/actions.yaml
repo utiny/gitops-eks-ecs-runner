@@ -16,7 +16,7 @@ jobs:
       - name: Checkout
         uses: action/checkout@v1
       - name: List Directory
-        needs: ["Checkout"]
+        need: ["Checkout"]
         run: |
           pwd
           ls
