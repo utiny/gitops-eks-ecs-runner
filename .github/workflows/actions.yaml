@@ -6,9 +6,13 @@ on:
 # push:
  push:
    branches:
-    - master
-    - development
-    - feature1
+     - master
+     - development
+     - 'feature/feature1'
+     - 'feature/*'
+     - 'feature/**'
+#   branches-ignore:
+#     - test
  pull_request:
    types: [closed, assigned, opened, reopened]
 # schedule:
