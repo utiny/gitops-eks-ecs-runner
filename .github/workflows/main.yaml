@@ -20,6 +20,13 @@ jobs:
          shell: python
        - name: step4 echo another string
          run: echo completed.
+  run-windows-commands:
+    run-on: windows-latest
+    steps:
+      - name: Directory-listing-powershell
+        run: Get-Location
+      - name: Directory-bash
+        run: pwd
+        shell: bash
 
- 
 
