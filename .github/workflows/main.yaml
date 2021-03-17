@@ -22,11 +22,21 @@ jobs:
          run: echo completed.
   run-windows-commands:
     runs-on: windows-latest
+    needs: ["run-dummy-commands"]
     steps:
       - name: Directory-listing-powershell
         run: Get-Location
       - name: Directory-bash
         run: pwd
         shell: bash
+  run-dummy-commands:
+    runs-on: windows-latest
+    steps:
+      - name: Directory-listing-powershell
+        run: Get-Location
+      - name: Directory-bash
+        run: pwd
+        shell: bash
+
 
 
