@@ -10,10 +10,9 @@ jobs:
   prepare_runner:
     runs-on: ubuntu-latest
     steps:
-       run: |
+      - run: |
           echo 'create runner'
   execute_jobs:
-    runs-on: self-hosted
     needs: prepare_runner
     runs-on: [self-hosted]
     steps:
