@@ -17,9 +17,20 @@ jobs:
       runs-on: ubuntu-latest
       needs: [aws-conn-initialization]
       steps:
-       - name: step1
-         run: echo 'd'
+        - name: Render Amazon ECS task definition
+          id: render-web-container
+          uses: aws-actions/amazon-ecs-render-task-definition@v1
+          with:
+            task-definition: task-definition.json
+            container-name: web
+            image: amazon/amazon-ecs-sample:latest
 
+        - name: Deploy to Amazon ECS service
+          uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+          with:
+            task-definition: ${{ steps.render-web-container.outputs.task-definition }}
+            service: my-service
+            cluster: ecs-cluster
 
 
 
