@@ -1,42 +1,42 @@
-name: shell commands
-
-
-on: [push]
-
-jobs:
-  run-shell-commands:
-    runs-on: ubuntu-latest
-    steps: 
-       - name: step1 echo a string
-         run: echo 'Hellow World'
-       - name: step2 multi line script
-         run: |
-           node -v
-           npm -v
-       - name: step3 python commands
-         run: |
-           import platform
-           print(platform.processor)  
-         shell: python
-       - name: step4 echo another string
-         run: echo completed.
-  run-windows-commands:
-    runs-on: windows-latest
-    needs: ["run-dummy-commands"]
-    steps:
-      - name: Directory-listing-powershell
-        run: Get-Location
-      - name: Directory-bash
-        run: pwd
-        shell: bash
-  run-dummy-commands:
-    runs-on: windows-latest
-    steps:
-      - name: Directory-listing-powershell
-        run: Get-Location
-      - name: Directory-bash
-        run: pwd
-        shell: bash
+#name: shell commands
+#
+#
+#on: [push]
+#
+#jobs:
+#  run-shell-commands:
+#    runs-on: ubuntu-latest
+#    steps: 
+#       - name: step1 echo a string
+#         run: echo 'Hellow World'
+#       - name: step2 multi line script
+#         run: |
+#           node -v
+#           npm -v
+#       - name: step3 python commands
+#         run: |
+#           import platform
+#           print(platform.processor)  
+#         shell: python
+#       - name: step4 echo another string
+#         run: echo completed.
+#  run-windows-commands:
+#    runs-on: windows-latest
+#    needs: ["run-dummy-commands"]
+#    steps:
+#      - name: Directory-listing-powershell
+#        run: Get-Location
+#      - name: Directory-bash
+#        run: pwd
+#        shell: bash
+#  run-dummy-commands:
+#    runs-on: windows-latest
+#    steps:
+#      - name: Directory-listing-powershell
+#        run: Get-Location
+#      - name: Directory-bash
+#        run: pwd
+#        shell: bash
 
 
 
