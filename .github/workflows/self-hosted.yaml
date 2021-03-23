@@ -1,5 +1,5 @@
 name: Self hosted runner
-
+########
 on:
  push:
 
@@ -9,7 +9,7 @@ env:
 jobs:
   execute_jobs:
     needs: prepare_runner
-    runs-on: [self-hosted]
+    runs-on: [projectA]
     steps:
       - name: Log ENV vailables
         run: |
