@@ -7,11 +7,6 @@ env:
   WF_ENV: Available to all jobs
 
 jobs:
-  prepare_runner:
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          echo 'create runner'
   execute_jobs:
     needs: prepare_runner
     runs-on: [self-hosted]
