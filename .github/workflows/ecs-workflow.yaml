@@ -7,7 +7,6 @@ env:
 
 jobs:
   execute_jobs:
-    needs: prepare_runner
     runs-on: [self-hosted]
     steps:
       - name: Log ENV vailables
