@@ -15,7 +15,6 @@ jobs:
            echo "JOB_ENV: ${WF_ENV}"
            echo "STEP_ENV: ${WF_ENV}"
            echo 'execution completed. '
-           shutdown -h now
      - name: stop runner
        if: ${{ always() }}
        run: | 
