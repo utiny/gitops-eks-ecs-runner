@@ -7,15 +7,17 @@ env:
 
 jobs:
   execute_jobs:
-    runs-on: [self-hosted]
+    runs-on: ubuntu-latest
+    outputs:
+      token: ${{ steps.setuptoken.outputs.RUNNER_TOKEN }}
     steps:
-     - name: Log ENV vailables
+     - name: CodeBuildStep
        run: |
            echo "WF_ENV: ${WF_ENV}"
            echo "JOB_ENV: ${WF_ENV}"
            echo "STEP_ENV: ${WF_ENV}"
            echo 'execution completed. '
-     - name: stop runner
+     - name: setuptoken
        if: ${{ always() }}
        run: | 
           RUNNER_TOKEN="$(curl -XPOST -fsSL \
@@ -23,5 +25,14 @@ jobs:
              -H "Accept: application/vnd.github.v3+json" \
              "https://api.github.com/${SCOPE}/${_PATH}/actions/runners/registration-token" \
              | jq -r '.token')"
-          /home/actions/actions-runner/config.sh remove --token $RUNNER_TOKEN
-       shell: bash
+           echo $RUNNER_TOKEN
+           echo "::set-output name=RUNNER_TOKEN::$RUNNER_TOKEN"
+  cleanup_jobs:
+     runs-on: ubuntu-latest
+     needs: [execute_jobs]
+     if : {{ always() }}
+     steps: 
+      - name: Cleanup step
+        run: |
+          echo 'using ${{needs.execute_jobs.outputs.token}}'
+          /home/actions/actions-runner/config.sh remove --token ${{needs.execute_jobs.outputs.token}}
