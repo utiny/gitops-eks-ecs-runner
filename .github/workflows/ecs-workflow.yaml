@@ -1,9 +1,6 @@
-name: Self hosted runner
+name: ECS Runner Example
 on:
  push:
-
-env:
-  WF_ENV: Available to all jobs
 
 jobs:
   execute_jobs:
@@ -57,5 +54,6 @@ jobs:
            curl -X DELETE \
              -H "Authorization: token ${{needs.execute_jobs.outputs.git-access-token}}" \
              -H "Accept: application/vnd.github.v3+json" \
-             "https://api.github.com/${SCOPE}/${_PATH}/actions/runners/${{needs.execute_jobs.outputs.git-run-id}}
+             "https://api.github.com/${SCOPE}/${_PATH}/actions/runners/${{needs.execute_jobs.outputs.git-run-id}}"
+
            
