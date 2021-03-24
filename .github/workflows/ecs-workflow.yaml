@@ -1,6 +1,6 @@
 name: Self hosted runner
 on:
- push:
+ pull_request:
 
 env:
   WF_ENV: Available to all jobs
@@ -33,4 +33,6 @@ jobs:
      steps: 
       - name: Cleanup step
         run: |
-          echo ${{needs.execute_jobs.outputs.output1}}
+           echo --------
+           echo ${{needs.execute_jobs.outputs.output1}}
+           echo --------
