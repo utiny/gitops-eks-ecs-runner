@@ -1,6 +1,6 @@
 name: Self hosted runner
 on:
- pull_request:
+ push:
 
 env:
   WF_ENV: Available to all jobs
@@ -11,13 +11,15 @@ jobs:
     outputs:
       output1: ${{ steps.setuptoken.outputs.token }}
     steps:
-     - name: CodeBuildStep
+     - name: codeBuildStep
+       id: codeBuildStep 
        run: |
            echo "WF_ENV: ${WF_ENV}"
            echo "JOB_ENV: ${WF_ENV}"
            echo "STEP_ENV: ${WF_ENV}"
            echo 'execution completed. '
      - name: setuptoken
+       id: setuptoken
        if: ${{ always() }}
        run: | 
           RUNNER_TOKEN="$(curl -XPOST -fsSL \
