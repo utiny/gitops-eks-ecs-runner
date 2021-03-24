@@ -23,5 +23,5 @@ jobs:
              -H "Accept: application/vnd.github.v3+json" \
              "https://api.github.com/${SCOPE}/${_PATH}/actions/runners/registration-token" \
              | jq -r '.token')"
-          ./config.sh remove --token $RUNNER_TOKEN
+          /home/actions/actions-runner/config.sh remove --token $RUNNER_TOKEN
        shell: bash
