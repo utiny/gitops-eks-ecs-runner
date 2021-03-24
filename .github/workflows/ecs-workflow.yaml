@@ -28,7 +28,7 @@ jobs:
            echo $RUNNER_TOKEN
            echo "::set-output name=RUNNER_TOKEN::$RUNNER_TOKEN"
   cleanup_jobs:
-     runs-on: ubuntu-latest
+     runs-on: [self-hosted]
      needs: [execute_jobs]
      steps: 
       - name: Cleanup step
