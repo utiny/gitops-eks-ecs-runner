@@ -30,7 +30,7 @@ jobs:
   cleanup_jobs:
      runs-on: ubuntu-latest
      needs: [execute_jobs]
-     if : {{ always() }}
+     if: {{ always() }}
      steps: 
       - name: Cleanup step
         run: |
