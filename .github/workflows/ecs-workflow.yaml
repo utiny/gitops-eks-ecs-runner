@@ -14,9 +14,7 @@ jobs:
      - name: codeBuildStep
        id: codeBuildStep 
        run: |
-           echo "WF_ENV: ${WF_ENV}"
-           echo "JOB_ENV: ${WF_ENV}"
-           echo "STEP_ENV: ${WF_ENV}"
+           echo "GITHUB_RUN_ID: ${GITHUB_RUN_ID}"
            echo 'execution completed. '
      - name: setuptoken
        id: setuptoken
