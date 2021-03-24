@@ -9,8 +9,8 @@ jobs:
   execute_jobs:
     runs-on: [self-hosted]
     steps:
-      - name: Log ENV vailables
-        run: |
+     - name: Log ENV vailables
+       run: |
            echo "WF_ENV: ${WF_ENV}"
            echo "JOB_ENV: ${WF_ENV}"
            echo "STEP_ENV: ${WF_ENV}"
@@ -24,3 +24,4 @@ jobs:
              "https://api.github.com/${SCOPE}/${_PATH}/actions/runners/registration-token" \
              | jq -r '.token')"
           ./config.sh remove --token $RUNNER_TOKEN
+       shell: bash
