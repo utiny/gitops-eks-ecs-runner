@@ -9,7 +9,7 @@ jobs:
   execute_jobs:
     runs-on: [self-hosted]
     outputs:
-      token: ${{ steps.setuptoken.outputs.token }}
+      output1: ${{ steps.setuptoken.outputs.token }}
     steps:
      - name: CodeBuildStep
        run: |
@@ -29,8 +29,8 @@ jobs:
            echo "::set-output name=token::$RUNNER_TOKEN"
   cleanup_jobs:
      runs-on: [self-hosted]
-     needs: [execute_jobs]
+     needs: execute_jobs
      steps: 
       - name: Cleanup step
         run: |
-          echo 'using ${{needs.execute_jobs.outputs.token}}'
+          echo ${{needs.execute_jobs.outputs.output1}}
