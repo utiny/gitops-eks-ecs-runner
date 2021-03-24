@@ -23,6 +23,6 @@ RUNNER_TOKEN="$(curl -XPOST -fsSL \
 
 ./run.sh --once
 
-echo "Removing runner..."
-./config.sh remove --unattended --token ${RUNNER_TOKEN}
+#echo "Removing runner..."
+#./config.sh remove --unattended --token ${RUNNER_TOKEN}
 
