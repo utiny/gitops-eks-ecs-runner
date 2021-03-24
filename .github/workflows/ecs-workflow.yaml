@@ -38,7 +38,7 @@ jobs:
            echo "::set-output name=scope::$SCOPE"
            echo "::set-output name=path::$_PATH"
   cleanup_jobs:
-     runs-on: [self-hosted]
+     runs-on: ubuntu-latest
      needs: execute_jobs
      steps: 
       - name: Cleanup step
@@ -54,6 +54,6 @@ jobs:
            curl -X DELETE \
              -H "Authorization: token ${{needs.execute_jobs.outputs.git-access-token}}" \
              -H "Accept: application/vnd.github.v3+json" \
-             "https://api.github.com/${SCOPE}/${_PATH}/actions/runners/${{needs.execute_jobs.outputs.git-run-id}}"
+             https://api.github.com/${{needs.execute_jobs.outputs.scope}}/${{needs.execute_jobs.outputs.path}}/actions/runners/${{needs.execute_jobs.outputs.git-run-id}}
 
            
