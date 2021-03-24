@@ -34,4 +34,3 @@ jobs:
       - name: Cleanup step
         run: |
           echo 'using ${{needs.execute_jobs.outputs.token}}'
-          /home/actions/actions-runner/config.sh remove --token ${{needs.execute_jobs.outputs.token}}
