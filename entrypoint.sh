@@ -12,17 +12,8 @@ RUNNER_TOKEN="$(curl -XPOST -fsSL \
         --labels ${GH_RUNNER_LABELS}\
         --unattended
 
-
-#cleanup() {
-#    echo "Removing runner..."
-#    ./config.sh remove --unattended --token ${RUNNER_TOKEN}
-#}
-
-#trap 'cleanup; exit 130' INT
-#trap 'cleanup; exit 143' TERM
-
 ./run.sh --once
 
-#echo "Removing runner..."
-#./config.sh remove --unattended --token ${RUNNER_TOKEN}
+echo "Removing runner..."
+./config.sh remove --unattended --token ${RUNNER_TOKEN}
 
