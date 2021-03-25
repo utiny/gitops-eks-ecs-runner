@@ -5,13 +5,6 @@ on:
 jobs:
   execute_jobs:
     runs-on: [self-hosted]
-    outputs:
-      git-runner-token: ${{ steps.setuptoken.outputs.git-runner-token }}
-      git-access-token: ${{ steps.setuptoken.outputs.git-access-token }}
-      git-run-id: ${{ steps.setuptoken.outputs.git-run-id }}
-      scope: ${{ steps.setuptoken.outputs.scope }}
-      path: ${{ steps.setuptoken.outputs.path }}
-
     steps:
      - name: codeBuildStep
        id: codeBuildStep 
@@ -22,38 +15,5 @@ jobs:
            echo "GITHUB_ACCESS_TOKEN: ${GITHUB_ACCESS_TOKEN}" 
            echo 'execution completed'
            echo '-----------------------------------'
-     - name: setuptoken
-       id: setuptoken
-       if: ${{ always() }}
-       run: | 
-          RUNNER_TOKEN="$(curl -XPOST -fsSL \
-             -H "Authorization: token ${GITHUB_ACCESS_TOKEN}" \
-             -H "Accept: application/vnd.github.v3+json" \
-             "https://api.github.com/${SCOPE}/${_PATH}/actions/runners/registration-token" \
-             | jq -r '.token')"
-           echo $RUNNER_TOKEN
-           echo "::set-output name=git-runner-token::$RUNNER_TOKEN"
-           echo "::set-output name=git-access-token::$GITHUB_ACCESS_TOKEN"
-           echo "::set-output name=git-run-id::$GITHUB_RUN_ID"
-           echo "::set-output name=scope::$SCOPE"
-           echo "::set-output name=path::$_PATH"
-  cleanup_jobs:
-     runs-on: ubuntu-latest
-     needs: execute_jobs
-     steps: 
-      - name: Cleanup step
-        run: |
-           echo --------
-           echo ${{needs.execute_jobs.outputs.git-runner-token}}
-           echo ${{needs.execute_jobs.outputs.git-access-token}}
-           echo ${{needs.execute_jobs.outputs.git-run-id}}
-           echo ${{needs.execute_jobs.outputs.scope}}
-           echo ${{needs.execute_jobs.outputs.path}}
-           echo --------
-
-           curl -X DELETE \
-             -H "Authorization: token ${{needs.execute_jobs.outputs.git-access-token}}" \
-             -H "Accept: application/vnd.github.v3+json" \
-             https://api.github.com/${{needs.execute_jobs.outputs.scope}}/${{needs.execute_jobs.outputs.path}}/actions/runners/${{needs.execute_jobs.outputs.git-run-id}}
 
            
